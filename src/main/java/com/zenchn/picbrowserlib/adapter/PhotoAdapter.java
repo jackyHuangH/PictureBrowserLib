@@ -101,20 +101,14 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHol
                             //删除图片回调
                             ImageSourceInfo target = mData.get(position);
                             Iterator<ImageSourceInfo> iterator = mData.iterator();
-                            int index = 0;
                             while (iterator.hasNext()) {
                                 ImageSourceInfo next = iterator.next();
                                 if (next == target) {
                                     iterator.remove();
-                                    if (getItemCount() == mMaxNum) {
-                                        notifyDataSetChanged();
-                                    } else {
-                                        notifyItemRemoved(index);
-                                    }
+                                    notifyDataSetChanged();
                                 }
-                                index++;
                             }
-                            mOnPhotoEditableItemClickListener.onPhotoDeleteClick(index, target);
+                            mOnPhotoEditableItemClickListener.onPhotoDeleteClick(position, target);
                         }
                     });
 
